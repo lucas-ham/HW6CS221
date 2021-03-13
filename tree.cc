@@ -33,7 +33,7 @@ std::string path_to(tree_ptr_t tree, key_t key)
 	auto str = ""
 	return helper_path_to(tree, key, str);
 }	
-std:string helper_path_to(tree_ptr_t tree, key_t key, std::string str = "")
+std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str = "")
 {	
 	if (tree == nullptr)
 	{
