@@ -1,4 +1,4 @@
-
+#include <string>
 
 int create_tree(const key_t& key, const value_t$ value, tree_ptr_t left = nullptr, tree_ptr_t right = nullptr)
 {
