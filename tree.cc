@@ -4,10 +4,10 @@
 tree_ptr_t create_tree(const key_t& key, const value_t& value, tree_ptr_t left, tree_ptr_t right)
 {
 	tree_ptr_t newTree = new Tree;
-	newTree[0] = key;
-	newTree[1] = value;
-	newTree[2] = left;
-	newTree[3] = right;
+	newTree->key_ = key; 
+	newTree->value_ = value;
+	newTree->left_ = left;
+	newTree->right_ = right;
 
 	return newTree;
 	//allocate space for a tree node
@@ -22,8 +22,8 @@ void destroy_tree(tree_ptr_t tree)
 	{
 	} else
 	{
-		destroy_tree(*tree.left_);
-		destroy_tree(*tree.right_);
+		destroy_tree(tree->left_);
+		destroy_tree(tree->right_);
 		delete[] tree;
 	}
 	//destroys/clears the memory space of the tree AND it's children
@@ -33,33 +33,36 @@ void destroy_tree(tree_ptr_t tree)
 		//this is the way to do it, roughly, just need to make sure commands make sense
 }
 
+std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str)
+
 std::string path_to(tree_ptr_t tree, key_t key)
 {
 	//need to check every possible path, until the first instance of key is found
 	//recursion is your friend here too
 	auto str = "";
-	return helper_path_to(*tree, key, str);
-}	
-std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str = "")
+	return helper_path_to(tree, key, str);
+}
+
+std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str) 
 {	
 	if (tree == nullptr)
 	{
 		//didn't find it this time, nothing here
-		char str = "-";
+		char str = "";
 		return str;
-	} else if (*tree.key == key_)
+	} else if (tree->key_ == key)
 	{
 		//this means we've found the path, do whatever you need to to signal that
 		return str;
 	} else
 	{
-		helper_path_to(*tree.left_, key_t key, str+"L");
-		helper_path_to(*tree.right_, key_t key, str+"R");
+		helper_path_to(tree->left_, key, str+"L");
+		helper_path_to(tree->right_, key, str+"R");
 	}
 }
 
 
-tree_ptr_t node_at(tree_ptr_t tree, std:string path)
+tree_ptr_t node_at(tree_ptr_t tree, std::string path)
 {
 	//follow a path from a node to the end of the given path
 	//not entirely sure what to do on this, need to somehow remove one char from path each time
@@ -68,3 +71,4 @@ tree_ptr_t node_at(tree_ptr_t tree, std:string path)
 	//seperate string into first char and rest of the string
 	//then switch letter, if right or left check that isn't null and call it again, 
 	//if not right or left return nullptr
+}
