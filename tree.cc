@@ -3,7 +3,7 @@
 
 tree_ptr_t create_tree(const key_t& key, const value_t& value, tree_ptr_t left, tree_ptr_t right)
 {
-	tree_ptr_t newTree = new Tree;
+	tree_ptr_t newTree = new Tree();
 	newTree->key_ = key; 
 	newTree->value_ = value;
 	newTree->left_ = left;
@@ -25,7 +25,7 @@ void destroy_tree(tree_ptr_t tree)
 	{
 		destroy_tree(tree->left_);
 		destroy_tree(tree->right_);
-		delete[] tree;
+		delete tree;
 	}
 	//destroys/clears the memory space of the tree AND it's children
 	//easier to do this recursively?
