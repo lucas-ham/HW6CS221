@@ -20,6 +20,7 @@ void destroy_tree(tree_ptr_t tree)
 {
 	if (tree == nullptr)
 	{
+		//no value at the node, we're done with the tree
 	} else
 	{
 		destroy_tree(tree->left_);
@@ -33,7 +34,7 @@ void destroy_tree(tree_ptr_t tree)
 		//this is the way to do it, roughly, just need to make sure commands make sense
 }
 
-std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str)
+std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str);
 
 std::string path_to(tree_ptr_t tree, key_t key)
 {
@@ -48,7 +49,7 @@ std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str)
 	if (tree == nullptr)
 	{
 		//didn't find it this time, nothing here
-		char str = "";
+		str = "";
 		return str;
 	} else if (tree->key_ == key)
 	{
@@ -56,14 +57,58 @@ std::string helper_path_to(tree_ptr_t tree, key_t key, std::string str)
 		return str;
 	} else
 	{
-		helper_path_to(tree->left_, key, str+"L");
-		helper_path_to(tree->right_, key, str+"R");
+		std::string str1 = helper_path_to(tree->left_, key, str+"L");
+		std::string str2 = helper_path_to(tree->right_, key, str+"R");
+		if (str1 != "") 
+		{
+			//picks the leftmost path to the value
+			return str1;
+		} else
+		{
+			//if the leftmost path doesn't have the value, then regardless of if the rightmost
+			// does or not, return rightmost
+			return str2;
+		}
 	}
 }
 
 
 tree_ptr_t node_at(tree_ptr_t tree, std::string path)
 {
+	if (tree == nullptr)
+	{
+		//end of the path, no more leaves to check, so the path doesn't exist
+		return nullptr;
+	} else if (path == "")
+	{
+		//at the end of the path AND we know the tree isn't empty
+		return tree;
+	} else
+	{
+		//not at the end of the path or an empty tree, take the next step and try again
+		char first = path[0];
+		switch (first)
+		{
+			case 'R':
+			{
+				tree_ptr_t newTree = tree->right_;
+				path = path.substr(1);
+				return node_at(newTree, path);
+				break;
+			}
+			case 'L':
+			{
+				tree_ptr_t newTree = tree->left_;
+				path = path.substr(1);
+				return node_at(newTree, path);
+				break;
+			}
+			default:
+			{
+				return nullptr;
+			}
+		}
+	}
 	//follow a path from a node to the end of the given path
 	//not entirely sure what to do on this, need to somehow remove one char from path each time
 	//could do it with cases
@@ -72,3 +117,4 @@ tree_ptr_t node_at(tree_ptr_t tree, std::string path)
 	//then switch letter, if right or left check that isn't null and call it again, 
 	//if not right or left return nullptr
 }
+
