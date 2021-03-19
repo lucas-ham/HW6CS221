@@ -59,6 +59,12 @@ int main()
 	
 	tree_ptr_t check2 = add_child(tree_one, tree_three, 'L');
 
+	std::string checkPath1 = "RRR";
+	tree_ptr_t check3 = node_at(tree_one, checkPath1);
+
+	std::string checkPath2 = "RL";
+	tree_ptr_t check4 = node_at(tree_one, checkPath2);
+
 	assert(tree_two == four);
 	assert(tree_three == five);
 	std::cout<<"add_child works as expected"<<"\n";
@@ -70,10 +76,21 @@ int main()
 	assert(check2 == nullptr);
 	std::cout<<"trying to add a child to a position where there is already a child yields nullptr"<<"\n";
 	
+	assert(check3 == nullptr);
+	std::cout<<"path to empty space returns a null pointer"<<"\n";
+
+	assert(check4 == tree_five);
+	std::cout<<"path to a branch works for two turns"<<"\n";
+
+	
+
 	destroy_tree(tree_one);
-	assert(tree_one == nullptr);
-	assert(tree_two == nullptr);
-	assert(tree_five == nullptr);
+	std::cout<<tree_one->key_<<"\n";
+	std::cout<<tree_two->key_<<"\n";
+	std::cout<<tree_five->key_<<"\n";
+//	assert(tree_one == nullptr);
+//	assert(tree_two == nullptr);
+//	assert(tree_five == nullptr);
 	std::cout<<"destroy tree removes the entire tree (from the root down) and it's children"<<"\n";
 	return 0;
 
