@@ -69,6 +69,13 @@ int main()
 
 	assert(check2 == nullptr);
 	std::cout<<"trying to add a child to a position where there is already a child yields nullptr"<<"\n";
+	
+	destroy_tree(tree_one);
+	assert(tree_one == nullptr);
+	assert(tree_two == nullptr);
+	assert(tree_five == nullptr);
+	std::cout<<"destroy tree removes the entire tree (from the root down) and it's children"<<"\n";
 	return 0;
+
 }
 
