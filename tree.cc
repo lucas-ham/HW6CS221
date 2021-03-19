@@ -117,4 +117,3 @@ tree_ptr_t node_at(tree_ptr_t tree, std::string path)
 	//then switch letter, if right or left check that isn't null and call it again, 
 	//if not right or left return nullptr
 }
-
