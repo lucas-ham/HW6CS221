@@ -65,8 +65,14 @@ int main()
 	std::string checkPath2 = "RL";
 	tree_ptr_t check4 = node_at(tree_one, checkPath2);
 
+	std::string checkPath3 = "RX";
+	tree_ptr_t check5 = node_at(tree_one, checkPath3);
+
 	assert(tree_two == four);
 	assert(tree_three == five);
+	assert(tree_four == six);
+	assert(tree_six == seven);
+	assert(tree_five == eight);
 	std::cout<<"add_child works as expected"<<"\n";
 
 	std::string compareTo = "LRL"; 
@@ -82,7 +88,8 @@ int main()
 	assert(check4 == tree_five);
 	std::cout<<"path to a branch works for two turns"<<"\n";
 
-	
+	assert(check5 == nullptr);
+	std::cout<<"path with invalid characters yields a nullptr and not a crash"<<"\n";
 
 //	destroy_tree(tree_one);
 	std::cout<<tree_one->key_<<"\n";
