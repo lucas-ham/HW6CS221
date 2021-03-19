@@ -84,7 +84,7 @@ int main()
 
 	
 
-	destroy_tree(tree_one);
+//	destroy_tree(tree_one);
 	std::cout<<tree_one->key_<<"\n";
 	std::cout<<tree_two->key_<<"\n";
 	std::cout<<tree_five->key_<<"\n";
