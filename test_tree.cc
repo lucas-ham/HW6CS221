@@ -1,4 +1,5 @@
 #include <string>
+#include <assert.h>
 #include <iostream>
 #include "tree.hh"
 #include "tree.cc"
@@ -49,9 +50,20 @@ int main()
 	tree_ptr_t five = add_child(one, three, 'R');
 
 	std::string check1 = path_to(one, 2);
+	char check1let = check1[0];
 	
 	tree_ptr_t check2 = add_child(one, three, 'L');
 
+	assert(two == four);
+	assert(three == five);
+	std::cout<<"add_child works as expected"<<"\n";
+
+	char compareTo = 'R';
+	assert(check1let == compareTo);
+	std::cout<<"path_to works on a simple tree with no repeated values"<<"\n";
+
+	assert(check2 == nullptr);
+	std::cout<<"trying to add a child to a position where there is already a child yields nullptr"<<"\n";
 	return 0;
 }
 
