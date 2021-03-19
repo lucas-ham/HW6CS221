@@ -10,9 +10,11 @@ tree_ptr_t create_tree(const key_t& key, const value_t& value, tree_ptr_t left, 
 	newTree->right_ = right;
 
 	return newTree;
-	//allocate space for a tree node
-	//fills it with the given parameters (has everything to describe a new node)
-	//children are null by default, but can have pointers to other nodes
+	/*
+	allocate space for a tree node
+	fills it with the given parameters (has everything to describe a new node)
+	children are null by default, but can have pointers to other nodes
+	*/
 }
 
 
