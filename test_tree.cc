@@ -91,14 +91,14 @@ int main()
 	assert(check5 == nullptr);
 	std::cout<<"path with invalid characters yields a nullptr and not a crash"<<"\n";
 
-//	destroy_tree(tree_one);
-	std::cout<<tree_one->key_<<"\n";
-	std::cout<<tree_two->key_<<"\n";
-	std::cout<<tree_five->key_<<"\n";
+	destroy_tree(tree_one);
+//	std::cout<<tree_one->key_<<"\n";
+//	std::cout<<tree_two->key_<<"\n";
+//	std::cout<<tree_five->key_<<"\n";
 //	assert(tree_one == nullptr);
 //	assert(tree_two == nullptr);
 //	assert(tree_five == nullptr);
-	std::cout<<"destroy tree removes the entire tree (from the root down) and it's children"<<"\n";
+//	std::cout<<"destroy tree removes the entire tree (from the root down) and it's children"<<"\n";
 	return 0;
 
 }
